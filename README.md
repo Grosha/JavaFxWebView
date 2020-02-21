@@ -8,13 +8,15 @@ The project is a single jar file and you can attach it to your JavaFX applicatio
 
 Usage
 ============
-* Run your application with option: ```-javaagent:/path/to/fxagent.jar```
+* Build jar file via Maven (or Intelij Idea -> but jar file'll be located in another folder)
+* Run your application with option: ```java -javaagent:target/fxdriver-0.2-SNAPSHOT-shaded.jar -jar out/artifacts/fxdriver_jar/javafx-app.jar```
 * This agent runs selenium server inside your application using port 4444 (you can change this: ```-javaagent:/path/to/fxagent.jar=port=5500```)
 * Use RemoteWebDriver instance to connect to this server. Provide port number and browserName parameters. Example:
 ```java
 new RemoteWebDriver(new URL("http://localhost:4444/wd/hub/"), new DesiredCapabilities("javafx", "", Platform.ANY));
 ```
 * Use standard WebDriver methods for writing tests.
+* Be ready to implement your own driver
 
 Features
 ============
