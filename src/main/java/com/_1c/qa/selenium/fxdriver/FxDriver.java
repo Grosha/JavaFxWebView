@@ -16,17 +16,14 @@
 package com._1c.qa.selenium.fxdriver;
 
 import com._1c.qa.selenium.fxdriver.robot.FxRobot;
+import com.google.common.collect.ImmutableMap;
 import javafx.stage.Stage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.interactions.Mouse;
+import org.openqa.selenium.logging.Logs;
+import org.openqa.selenium.remote.*;
 
 import javax.imageio.ImageIO;
 import java.awt.AWTException;
@@ -36,18 +33,19 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class FxDriver implements WebDriver, TakesScreenshot, HasInputDevices
-{
+public class FxDriver implements WebDriver, TakesScreenshot, HasInputDevices {
     private final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
-
     private Capabilities capabilities;
     private FxSearchContext context;
+    private SessionId sessionId;
     private Robot robot;
     private FxMouse mouse;
     private FxKeyboard keyboard;
@@ -143,13 +141,13 @@ public class FxDriver implements WebDriver, TakesScreenshot, HasInputDevices
     @Override
     public Navigation navigate()
     {
-        return null;
+        return new FxDriverNavigation();
     }
 
     @Override
     public Options manage()
     {
-        return null;
+        return new FxDriverOptions();
     }
 
     @Override
@@ -182,5 +180,116 @@ public class FxDriver implements WebDriver, TakesScreenshot, HasInputDevices
     public Mouse getMouse()
     {
         return this.mouse;
+    }
+
+    private class FxDriverOptions implements Options {
+        @Override
+        public void addCookie(Cookie cookie) {
+
+        }
+
+        @Override
+        public void deleteCookieNamed(String s) {
+
+        }
+
+        @Override
+        public void deleteCookie(Cookie cookie) {
+
+        }
+
+        @Override
+        public void deleteAllCookies() {
+
+        }
+
+        @Override
+        public Set<Cookie> getCookies() {
+            return null;
+        }
+
+        @Override
+        public Cookie getCookieNamed(String s) {
+            return null;
+        }
+
+        @Override
+        public Timeouts timeouts() {
+            return null;
+        }
+
+        @Override
+        public ImeHandler ime() {
+            return null;
+        }
+
+        @Override
+        public Window window() {
+            return new FxDriverWindow();
+        }
+
+        @Override
+        public Logs logs() {
+            return null;
+        }
+    }
+
+    private class FxDriverWindow implements Window {
+        @Override
+        public void setSize(Dimension dimension) {
+
+        }
+
+        @Override
+        public void setPosition(Point point) {
+
+        }
+
+        @Override
+        public Dimension getSize() {
+            return null;
+        }
+
+        @Override
+        public Point getPosition() {
+            return null;
+        }
+
+        @Override
+        public void maximize() {
+
+        }
+
+        @Override
+        public void fullscreen() {
+
+        }
+    }
+
+    private class FxDriverNavigation implements Navigation {
+        @Override
+        public void back() {
+
+        }
+
+        @Override
+        public void forward() {
+
+        }
+
+        @Override
+        public void to(String s) {
+
+        }
+
+        @Override
+        public void to(URL url) {
+
+        }
+
+        @Override
+        public void refresh() {
+
+        }
     }
 }

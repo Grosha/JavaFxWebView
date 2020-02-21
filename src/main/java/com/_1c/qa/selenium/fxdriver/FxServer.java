@@ -37,4 +37,3 @@ public class FxServer
         serverThread.start();
     }
 }
-

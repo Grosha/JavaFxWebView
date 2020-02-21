@@ -38,8 +38,7 @@ public class FxDriverProvider implements DriverProvider
     }
 
     @Override
-    public WebDriver newInstance(Capabilities capabilities)
-    {
+    public WebDriver newInstance(Capabilities capabilities) {
         return new FxDriver(capabilities);
     }
 }

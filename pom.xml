@@ -26,6 +26,8 @@
     <properties>
         <selenium-version>3.11.0</selenium-version>
         <awaitility-version>3.1.0</awaitility-version>
+<!--        <javafx-version>13.0.1</javafx-version>-->
+        <javafx-version>11.0.2</javafx-version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -85,7 +87,11 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
+                                        <Agent-Class>com._1c.qa.selenium.fxdriver.FxAgent</Agent-Class>
                                         <Premain-Class>com._1c.qa.selenium.fxdriver.FxAgent</Premain-Class>
+                                        <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                                        <Can-Retransform-Classes>true</Can-Retransform-Classes>
+<!--                                        <Can-Set-Native-Method-Prefix>true</Can-Set-Native-Method-Prefix>-->
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
@@ -107,6 +113,36 @@
             <artifactId>selenium-server</artifactId>
             <version>${selenium-version}</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
 
+    </dependencies>
 </project>

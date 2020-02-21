@@ -15,7 +15,12 @@
  */
 package com._1c.qa.selenium.fxdriver;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
+import java.lang.instrument.Instrumentation;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Properties;
@@ -37,11 +42,14 @@ import java.util.function.Function;
  */
 public class FxAgent
 {
+
     @SuppressWarnings("unchecked")
-    public static void premain(String args) throws Exception
+    public static void premain(String args, Instrumentation instrumentation) throws Exception
     {
+        Logger logger = LoggerFactory.getLogger(FxAgent.class);
         Properties properties = parseArguments(args);
 
+        logger.trace(properties.toString());
         int port = Integer.valueOf(properties.getProperty("port", "4444"));
 
         Thread agentThread = new Thread(() -> {
@@ -100,4 +108,3 @@ public class FxAgent
         return properties;
     }
 }
-
